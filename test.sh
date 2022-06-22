@@ -3,9 +3,9 @@
 check() {
   expected=$1
   script_name=$2
-  args="${@:3}"
-  echo -n "$script_name $args..."
-  actual="$($script_name $args)"
+  args=( "${@:3}" )
+  echo -n "$script_name ${args[*]}..."
+  actual="$($script_name "${args[@]}")"
   if [ "$expected" != "$actual" ]; then
     echo
     echo "'$expected' expected, but got '$actual.'"
