@@ -1,4 +1,5 @@
 #!/bin/zsh
+# shebangはzshでないと通知が文字化けする
 
 # timer - 指定時間後に通知
 #
@@ -16,16 +17,15 @@
 # note:
 #   - 以下のようにバックグラウンドで使うのが良さげ。
 #     timer.sh 5 &
-#   
+#
 #   - timer hh:mm で直近の時刻 hh:mm に通知するという機能の追加を検討したが、
 #     時刻の計算が面倒で断念。
-#   - shebangはzshでないと通知が文字化けする
 
 # 入力値の判定
 
 # 引数の数の確認
 if [ $# != 1 ]; then
-  echo 'number of arguments must be 1.'
+  echo 'This command requires exactly one argument.'
   return 1
 fi
 # 整数であることの確認

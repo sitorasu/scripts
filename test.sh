@@ -15,7 +15,7 @@ check() {
   fi
 }
 
-check 'number of arguments must be 1.' timer.sh
-check 'invalid argument.' timer.sh not_a_number
-check 'invalid argument.' timer.sh 12ab
-check 'invalid argument.' timer.sh ab12
+check 'This command requires exactly one argument.' timer
+check 'invalid argument.' timer not_a_number
+check 'invalid argument.' timer 12ab
+check 'invalid argument.' timer ab12
