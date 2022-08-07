@@ -2,10 +2,9 @@
 
 check_stdout() {
   local expected=$1
-  local script_name=$2
-  local args=( "${@:3}" )
-  echo -n "$script_name ${args[*]}..."
-  actual="$($script_name "${args[@]}")"
+  local test_case=$2
+  echo -n "$test_case..."
+  actual="$(eval "$test_case")"
   if [ "$expected" != "$actual" ]; then
     echo
     echo "  '$expected' expected, but got '$actual'."
