@@ -36,5 +36,5 @@ LANG=ja_JP.UTF-8
 
 source format-checker-functions.sh
 
-check_if_ends_with_newline "$filename"
+check_ends_with_newline "$filename"
 check_within_80_chars_per_line "$filename"
