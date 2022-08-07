@@ -1,7 +1,7 @@
 #!/bin/zsh
 # shebangはzshでないと通知が文字化けする
 
-# timer - 指定時間後に通知
+# timer - 指定時間後に通知する
 #
 # synopsis:
 #   timer <minutes>
