@@ -35,24 +35,17 @@ count_chars_in_line() {
   echo $num_chars
 }
 
-# ファイルの各行が80桁以内であるか調べる
+# ファイルの各行が80桁以内か調べる
 check_within_80_chars_per_line() {
   local filename=$1
   local ret=0
-  # 標準入力から1行ずつ読み出す
+  # ファイルから1行ずつ読み出す
   #   IFS='' は行の前後の空白が読み飛ばされる問題の対策
   #   || の右辺は最終行が改行で終わっていない場合に処理されない問題の対策
   while IFS='' read -r line || [ -n "$line" ]
   do
-    # デバッグ用
-    # echo "$line"
-
     local num_chars
     num_chars=$(count_chars_in_line "$line")
-
-    # デバッグ用
-    # echo "$num_chars"
-
     # 80桁を超える行が見つかったら報告
     #   TODO: 行番号が知りたい
     if [ "$num_chars" -gt 80 ]; then
@@ -60,6 +53,5 @@ check_within_80_chars_per_line() {
       echo "${line}: $num_chars"
     fi
   done < "$filename"
-  # 80桁を超える行が見つかることなく最後に到達したなら問題なし
   return $ret
 }
