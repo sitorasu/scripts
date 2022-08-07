@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source test.sh
-source format-checker-functions.sh
+source ../format-checker-functions.sh
 
 check_stdout 9 'count_chars_in_line abcdefghi'
 check_stdout 9 'count_chars_in_line "  ab  c  "'
