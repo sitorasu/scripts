@@ -8,7 +8,6 @@
 #
 # example:
 #   timer 5
-#   timer 12:34
 #
 # discription:
 #   整数 minutes を指定すると、現在時刻から minutes 分後に通知する。
