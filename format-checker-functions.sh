@@ -6,7 +6,7 @@ check_ends_with_newline() {
   # 入力の末尾が改行でないときreadの終了コードは1になる
   tail -n 1 "$filename" | read -r
   if [ $? -eq 1 ]; then
-    echo "'$filename' does not end with newline."
+    echo "The file does not end with newline."
     return 1
   fi
   return 0

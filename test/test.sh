@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# 与えられたコマンドの標準出力が期待するものであるかチェックする
+# FIXME: テストケースが書きにくい
 check_stdout() {
   local expected=$1
   local test_case=$2
