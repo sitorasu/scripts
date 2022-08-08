@@ -36,5 +36,16 @@ LANG=ja_JP.UTF-8
 
 source format-checker-functions.sh
 
+ret=0
+
 check_ends_with_newline "$filename"
+if [ $? -eq 1 ]; then
+  ret=1
+fi
+
 check_within_80_chars_per_line "$filename"
+if [ $? -eq 1 ]; then
+  ret=1
+fi
+
+exit $ret

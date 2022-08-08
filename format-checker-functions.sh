@@ -28,8 +28,8 @@ count_chars_in_line() {
     elif [ $is_ascii -eq 1 ]; then
       num_chars=$((num_chars + 2))
     else
-      echo 'Unexpected error happened while processing lines.'
-      return 1
+      echo 'Unexpected error happened while processing lines.' >&2
+      exit 2
     fi
   done < <(echo "$line" | grep -o .)
   echo $num_chars
