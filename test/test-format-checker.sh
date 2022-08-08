@@ -16,9 +16,12 @@ check_stdout 80 'count_chars_in_line 1234567890123456789012345678901234567890123
 check_stdout 80 'count_chars_in_line ああああああああああああああああああああああああああああああああああああああああ'
 check_stdout 96 'count_chars_in_line あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん！？'
 
-check_stdout '' 'check_ends_with_newline test-format-checker-files/valid.txt'
+check_stdout '' 'check_ends_with_newline test-format-checker-files/trailing-space.txt'
 check_stdout 'The file does not end with newline.' 'check_ends_with_newline test-format-checker-files/no-end-newline.txt'
 
-check_stdout '' 'check_within_80_chars_per_line test-format-checker-files/valid.txt'
+check_stdout '' 'check_within_80_chars_per_line test-format-checker-files/trailing-space.txt'
 check_stdout '123456789012345678901234567890123456789012345678901234567890123456789012345678901: 81
 1234567890123456789012345678901234567890123456789012345678901234567890123456789あ: 81' 'check_within_80_chars_per_line test-format-checker-files/more-than-80-chars-line.txt'
+
+check_stdout 'test-format-checker-files/trailing-space.txt:2: Trailing space.
+test-format-checker-files/trailing-space.txt:5: Trailing space.' 'check_trailing_space test-format-checker-files/trailing-space.txt'

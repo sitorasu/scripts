@@ -1,7 +1,8 @@
 abcdefghi
-  ab  c
+  ab  c  
 あいうabc
 
+     
 $hoge
 *hoge
 hoge.txt

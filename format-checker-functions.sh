@@ -12,6 +12,19 @@ check_ends_with_newline() {
   return 0
 }
 
+# 空白で終わっている行を報告する
+check_trailing_space() {
+  local filename=$1
+  local line_num=1
+  while IFS='' read -r line || [ -n "$line" ]
+  do
+    if [ "${line: -1}" = ' ' ]; then
+      echo "$filename:$line_num: Trailing space."
+    fi
+    line_num=$((line_num + 1))
+  done < "$filename"
+}
+
 # 引数の文字列の文字数を、ASCII文字なら1文字、それ以外なら2文字でカウントして表示する
 count_chars_in_line() {
   local line=$1
