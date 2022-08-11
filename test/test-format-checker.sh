@@ -46,6 +46,7 @@ assert "$expected" "$actual"
 cat <<'EOF' > "$expected"
 5
 EOF
+# shellcheck disable=SC2016
 count_chars_in_line '$hoge' > "$actual"
 echo -n "count_chars_in_line '\$hoge'"
 assert "$expected" "$actual"
@@ -126,4 +127,3 @@ EOF
 check_trailing_space test-format-checker-files/trailing-space.txt > "$actual"
 echo -n "check_trailing_space test-format-checker-files/trailing-space.txt"
 assert "$expected" "$actual"
-
