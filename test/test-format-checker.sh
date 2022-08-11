@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# このスクリプトが置かれているディレクトリに移動する
+# (以下では、パスはすべてこのスクリプトからの相対パスで記述する)
 cd "$(dirname "$0")" || exit
 
 source test.sh
@@ -9,6 +11,8 @@ expected=$(mktemp -t expected)
 actual=$(mktemp -t actual)
 
 trap 'rm $expected $actual' EXIT
+
+# unit tests (tests for functions)
 
 cat <<'EOF' > "$expected"
 EOF
@@ -130,6 +134,15 @@ test-format-checker-files/more-than-80-chars-line.txt:8: 81 chars.
 EOF
 check_within_80_chars_per_line test-format-checker-files/more-than-80-chars-line.txt > "$actual"
 echo -n "check_within_80_chars_per_line test-format-checker-files/more-than-80-chars-line.txt"
+assert "$expected" "$actual"
+
+# integration test (test for format-checker.sh, the main script)
+
+cat <<'EOF' > "$expected"
+non-existent-file.txt: No such file.
+EOF
+../format-checker.sh non-existent-file.txt > "$actual"
+echo -n "../format-checker.sh non-existent-file.txt"
 assert "$expected" "$actual"
 
 cat <<'EOF' > "$expected"
