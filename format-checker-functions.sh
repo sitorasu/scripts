@@ -52,6 +52,7 @@ count_chars_in_line() {
 check_within_80_chars_per_line() {
   local filename=$1
   local ret=0
+  local line_num=1
   # ファイルから1行ずつ読み出す
   #   IFS='' は行の前後の空白が読み飛ばされる問題の対策
   #   || の右辺は最終行が改行で終わっていない場合に処理されない問題の対策
@@ -63,8 +64,10 @@ check_within_80_chars_per_line() {
     #   TODO: 行番号が知りたい
     if [ "$num_chars" -gt 80 ]; then
       ret=1
-      echo "${line}: $num_chars"
+      echo "$filename:$line_num: $num_chars chars."
+      echo "$line"
     fi
+    line_num=$((line_num + 1))
   done < "$filename"
   return $ret
 }

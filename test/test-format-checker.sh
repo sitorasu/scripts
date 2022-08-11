@@ -113,8 +113,10 @@ echo -n "check_within_80_chars_per_line test-format-checker-files/trailing-space
 assert "$expected" "$actual"
 
 cat <<'EOF' > "$expected"
-123456789012345678901234567890123456789012345678901234567890123456789012345678901: 81
-1234567890123456789012345678901234567890123456789012345678901234567890123456789あ: 81
+test-format-checker-files/more-than-80-chars-line.txt:5: 81 chars.
+123456789012345678901234567890123456789012345678901234567890123456789012345678901
+test-format-checker-files/more-than-80-chars-line.txt:8: 81 chars.
+1234567890123456789012345678901234567890123456789012345678901234567890123456789あ
 EOF
 check_within_80_chars_per_line test-format-checker-files/more-than-80-chars-line.txt > "$actual"
 echo -n "check_within_80_chars_per_line test-format-checker-files/more-than-80-chars-line.txt"
