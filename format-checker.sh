@@ -34,7 +34,7 @@ fi
 # grepは正常終了したら0か1を返す
 grep -o . /dev/null
 if [ $? -gt 1 ]; then
-  echo "'grep -o' is not supported." >&2
+  echo "'grep -o' might not be supported." >&2
   exit 2
 fi
 
@@ -42,6 +42,8 @@ fi
 #   これは日本語が含まれる文字列を正しく1文字ずつ分割するために必要な設定
 #   子プロセス(このスクリプト)の環境変数の変更は親プロセス(このスクリプトの呼び出し元)に影響しない
 LANG=ja_JP.UTF-8
+
+set -e -o pipefail
 
 script_dir="$(dirname "$0")"
 source "$script_dir"/format-checker-functions.sh
