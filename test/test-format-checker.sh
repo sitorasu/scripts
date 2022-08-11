@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "$(dirname "$0")" || exit
+
 source test.sh
 source ../format-checker-functions.sh
 
@@ -7,6 +9,27 @@ expected=$(mktemp -t expected)
 actual=$(mktemp -t actual)
 
 trap 'rm $expected $actual' EXIT
+
+cat <<'EOF' > "$expected"
+EOF
+check_ends_with_newline test-format-checker-files/trailing-space.txt > "$actual"
+echo -n "check_ends_with_newline test-format-checker-files/trailing-space.txt"
+assert "$expected" "$actual"
+
+cat <<'EOF' > "$expected"
+The file does not end with newline.
+EOF
+check_ends_with_newline test-format-checker-files/no-end-newline.txt > "$actual"
+echo -n "check_ends_with_newline test-format-checker-files/no-end-newline.txt"
+assert "$expected" "$actual"
+
+cat <<'EOF' > "$expected"
+test-format-checker-files/trailing-space.txt:2: Trailing space.
+test-format-checker-files/trailing-space.txt:5: Trailing space.
+EOF
+check_trailing_space test-format-checker-files/trailing-space.txt > "$actual"
+echo -n "check_trailing_space test-format-checker-files/trailing-space.txt"
+assert "$expected" "$actual"
 
 cat <<'EOF' > "$expected"
 9
@@ -95,19 +118,6 @@ assert "$expected" "$actual"
 
 cat <<'EOF' > "$expected"
 EOF
-check_ends_with_newline test-format-checker-files/trailing-space.txt > "$actual"
-echo -n "check_ends_with_newline test-format-checker-files/trailing-space.txt"
-assert "$expected" "$actual"
-
-cat <<'EOF' > "$expected"
-The file does not end with newline.
-EOF
-check_ends_with_newline test-format-checker-files/no-end-newline.txt > "$actual"
-echo -n "check_ends_with_newline test-format-checker-files/no-end-newline.txt"
-assert "$expected" "$actual"
-
-cat <<'EOF' > "$expected"
-EOF
 check_within_80_chars_per_line test-format-checker-files/trailing-space.txt > "$actual"
 echo -n "check_within_80_chars_per_line test-format-checker-files/trailing-space.txt"
 assert "$expected" "$actual"
@@ -123,9 +133,26 @@ echo -n "check_within_80_chars_per_line test-format-checker-files/more-than-80-c
 assert "$expected" "$actual"
 
 cat <<'EOF' > "$expected"
+The file does not end with newline.
+EOF
+../format-checker.sh test-format-checker-files/no-end-newline.txt > "$actual"
+echo -n "../format-checker.sh test-format-checker-files/no-end-newline.txt"
+assert "$expected" "$actual"
+
+cat <<'EOF' > "$expected"
 test-format-checker-files/trailing-space.txt:2: Trailing space.
 test-format-checker-files/trailing-space.txt:5: Trailing space.
 EOF
-check_trailing_space test-format-checker-files/trailing-space.txt > "$actual"
-echo -n "check_trailing_space test-format-checker-files/trailing-space.txt"
+../format-checker.sh test-format-checker-files/trailing-space.txt > "$actual"
+echo -n "../format-checker.sh test-format-checker-files/trailing-space.txt"
+assert "$expected" "$actual"
+
+cat <<'EOF' > "$expected"
+test-format-checker-files/more-than-80-chars-line.txt:5: 81 chars.
+123456789012345678901234567890123456789012345678901234567890123456789012345678901
+test-format-checker-files/more-than-80-chars-line.txt:8: 81 chars.
+1234567890123456789012345678901234567890123456789012345678901234567890123456789あ
+EOF
+../format-checker.sh test-format-checker-files/more-than-80-chars-line.txt > "$actual"
+echo -n "../format-checker.sh test-format-checker-files/more-than-80-chars-line.txt"
 assert "$expected" "$actual"
