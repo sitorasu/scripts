@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # TODO: 終了コードのテストに対応する
-# TODO: 標準エラー出力に対応する
 assert() {
   local expected=$1
   local actual=$2
