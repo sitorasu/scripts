@@ -64,7 +64,6 @@ check_within_80_chars_per_line() {
     local num_chars
     num_chars=$(count_chars_in_line "$line")
     # 80桁を超える行が見つかったら報告
-    #   TODO: 行番号が知りたい
     if [ "$num_chars" -gt 80 ]; then
       ret=1
       echo "$filename:$line_num: $num_chars chars."

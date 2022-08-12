@@ -25,8 +25,8 @@ filename=$1
 
 # ファイルの存在チェック
 if [ ! -f "$filename" ]; then
-  echo "$filename: No such file."
-  exit 1
+  echo "$filename: No such file." >&2
+  exit 2
 fi
 
 # grep -o . が使えるか確認する

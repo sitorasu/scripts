@@ -141,7 +141,7 @@ assert "$expected" "$actual"
 cat <<'EOF' > "$expected"
 non-existent-file.txt: No such file.
 EOF
-../format-checker.sh non-existent-file.txt > "$actual"
+../format-checker.sh non-existent-file.txt 2> "$actual"
 echo -n "../format-checker.sh non-existent-file.txt"
 assert "$expected" "$actual"
 
