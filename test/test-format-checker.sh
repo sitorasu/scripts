@@ -144,6 +144,7 @@ echo -n "../bin/format-checker.sh non-existent-file.txt"
 assert "$expected" "$actual"
 
 cat <<'EOF' > "$expected"
+test-format-checker-files/no-end-newline.txt:1: Year is not updated.
 test-format-checker-files/no-end-newline.txt does not end with newline.
 EOF
 ../bin/format-checker.sh test-format-checker-files/no-end-newline.txt > "$actual"
@@ -151,6 +152,7 @@ echo -n "../bin/format-checker.sh test-format-checker-files/no-end-newline.txt"
 assert "$expected" "$actual"
 
 cat <<'EOF' > "$expected"
+test-format-checker-files/trailing-space.txt:1: Year is not updated.
 test-format-checker-files/trailing-space.txt:2: Trailing space.
 test-format-checker-files/trailing-space.txt:5: Trailing space.
 EOF
@@ -159,6 +161,7 @@ echo -n "../bin/format-checker.sh test-format-checker-files/trailing-space.txt"
 assert "$expected" "$actual"
 
 cat <<'EOF' > "$expected"
+test-format-checker-files/more-than-80-chars-line.txt:1: Year is not updated.
 test-format-checker-files/more-than-80-chars-line.txt:5: 81 chars.
 test-format-checker-files/more-than-80-chars-line.txt:8: 81 chars.
 EOF
@@ -168,9 +171,12 @@ assert "$expected" "$actual"
 
 cat <<'EOF' > "$expected"
 non-existent-file.txt: No such file.
+test-format-checker-files/no-end-newline.txt:1: Year is not updated.
 test-format-checker-files/no-end-newline.txt does not end with newline.
+test-format-checker-files/trailing-space.txt:1: Year is not updated.
 test-format-checker-files/trailing-space.txt:2: Trailing space.
 test-format-checker-files/trailing-space.txt:5: Trailing space.
+test-format-checker-files/more-than-80-chars-line.txt:1: Year is not updated.
 test-format-checker-files/more-than-80-chars-line.txt:5: 81 chars.
 test-format-checker-files/more-than-80-chars-line.txt:8: 81 chars.
 EOF
