@@ -128,9 +128,7 @@ assert "$expected" "$actual"
 
 cat <<'EOF' > "$expected"
 test-format-checker-files/more-than-80-chars-line.txt:5: 81 chars.
-123456789012345678901234567890123456789012345678901234567890123456789012345678901
 test-format-checker-files/more-than-80-chars-line.txt:8: 81 chars.
-1234567890123456789012345678901234567890123456789012345678901234567890123456789あ
 EOF
 check_within_80_chars_per_line test-format-checker-files/more-than-80-chars-line.txt > "$actual"
 echo -n "check_within_80_chars_per_line test-format-checker-files/more-than-80-chars-line.txt"
@@ -162,9 +160,7 @@ assert "$expected" "$actual"
 
 cat <<'EOF' > "$expected"
 test-format-checker-files/more-than-80-chars-line.txt:5: 81 chars.
-123456789012345678901234567890123456789012345678901234567890123456789012345678901
 test-format-checker-files/more-than-80-chars-line.txt:8: 81 chars.
-1234567890123456789012345678901234567890123456789012345678901234567890123456789あ
 EOF
 ../format-checker.sh test-format-checker-files/more-than-80-chars-line.txt > "$actual"
 echo -n "../format-checker.sh test-format-checker-files/more-than-80-chars-line.txt"
@@ -176,9 +172,7 @@ test-format-checker-files/no-end-newline.txt does not end with newline.
 test-format-checker-files/trailing-space.txt:2: Trailing space.
 test-format-checker-files/trailing-space.txt:5: Trailing space.
 test-format-checker-files/more-than-80-chars-line.txt:5: 81 chars.
-123456789012345678901234567890123456789012345678901234567890123456789012345678901
 test-format-checker-files/more-than-80-chars-line.txt:8: 81 chars.
-1234567890123456789012345678901234567890123456789012345678901234567890123456789あ
 EOF
 ../format-checker.sh non-existent-file.txt test-format-checker-files/no-end-newline.txt test-format-checker-files/trailing-space.txt test-format-checker-files/more-than-80-chars-line.txt > "$actual" 2>&1
 echo -n "../format-checker.sh non-existent-file.txt test-format-checker-files/no-end-newline.txt test-format-checker-files/trailing-space.txt test-format-checker-files/more-than-80-chars-line.txt"

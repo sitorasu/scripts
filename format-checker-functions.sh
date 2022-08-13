@@ -67,7 +67,6 @@ check_within_80_chars_per_line() {
     if [ "$num_chars" -gt 80 ]; then
       ret=1
       echo "$filename:$line_num: $num_chars chars."
-      echo "$line"
     fi
     line_num=$((line_num + 1))
   done < "$filename"
