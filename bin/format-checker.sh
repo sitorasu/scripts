@@ -39,7 +39,7 @@ LANG=ja_JP.UTF-8
 set -e -o pipefail
 
 script_dir="$(dirname "$0")"
-source "$script_dir"/format-checker-functions.sh
+source "$script_dir"/funcs/format-checker-functions.sh
 
 ret=0
 
